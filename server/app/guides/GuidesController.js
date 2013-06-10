@@ -1,4 +1,8 @@
-[
+// Private methods.
+// ----------------
+
+// Guides object.
+var guides = [
     {
         "title"   : "Getting started",
         "content" : "Hi there! Thanks for using the __Advanced AngularJS project generator__. This little documentation will guide you to learn how to use it!"
@@ -16,4 +20,12 @@
             }
         ]
     }
-]
+];
+
+// Public methods.
+// -----------------
+
+// Return guides object.
+exports.all = function(req, res) {
+    res.json(guides);
+}

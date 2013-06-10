@@ -11,7 +11,7 @@ angular.module('myAwesomeApp', [ 'restangular' ])
     .config (RestangularProvider, $routeProvider) ->
 
         # API base URL.
-        RestangularProvider.setBaseUrl '/models'
+        RestangularProvider.setBaseUrl '/api'
 
         # Application routes.
         $routeProvider
