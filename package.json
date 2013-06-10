@@ -31,7 +31,9 @@
     "grunt-ngmin": "0.0.2",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-angular-templates": "~0.3.6",
-    "grunt-express": "~0.3.6"
+    "grunt-express": "~0.3.6",
+    "express-resource": "~1.0.0",
+    "express-namespace": "~0.1.1"
   },
   "devDependencies": {
     "grunt-contrib-connect": "~0.3.0",

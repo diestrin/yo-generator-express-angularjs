@@ -1,10 +1,10 @@
-// Module dependencies.
-// --------------------
-var guides = require('../app/guides/GuidesController');
-
 // Application routes module.
-module.exports = function(app) {
+module.exports = function (app) {
 
-    // Place here your API routes.
-    app.get('/api/guides', guides.all);
-}
+    // API routes.
+    app.namespace('/api', function () {
+
+        // Guides resource.
+        app.resource('guides', require('../app/guides/GuidesController'))
+    });
+};

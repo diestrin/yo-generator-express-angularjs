@@ -1,6 +1,8 @@
 // Module dependencies.
 // --------------------
-var express   = require('express');
+var express          = require('express'),
+    expressNamespace = require('express-namespace'),
+    expressResource  = require('express-resource');
 
 // Create express function and server variable.
 var app    = express(),
