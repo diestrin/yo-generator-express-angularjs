@@ -101,7 +101,11 @@ if $configure_remote; then
     actual_step=`expr $actual_step + 1`
     printHeader "\n${actual_step}- GIT configuration\n-----------------------\n"
 
-    read -p "Do you want to configure a remote origin to store your code? (y/n): "
+    echo "Your current origin urls are:\n"
+    git remote -v | grep origin
+    echo "\n"
+
+    read -p "Would you like to change it? (y/n): "
     if [ $REPLY == 'y' ]
     then
         if git ls-remote origin > /dev/null 2>&1; then
@@ -138,6 +142,11 @@ if $configure_heroku; then
                 heroku config:add BUILDPACK_URL=https://github.com/toi-agency/heroku-buildpack-nodejs-grunt-compass
             }
 
+            # Change the NODE_ENV of the Heroku application.
+            function changeHerokuEnv {
+                heroku config:add NODE_ENV=production
+            }
+
             # If the user already created the Heroku app, then add it.
             read -p "--> Did you already created the Heroku app? (y/n): "
 
@@ -159,6 +168,7 @@ if $configure_heroku; then
 
                 addHerokuUrl
                 addHerokuBuildpack
+                changeHerokuEnv
 
             # If the user hasn't created the Heroku app, then create it.
             else
@@ -174,6 +184,7 @@ if $configure_heroku; then
 
                 createHerokuApp
                 addHerokuBuildpack
+                changeHerokuEnv
             fi
         fi
     fi
