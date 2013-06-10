@@ -8,7 +8,7 @@ var express = require('express'),
 
 // Export module.
 // --------------
-module.exports = function(express, app, env, config) {
+module.exports = function(app, env, config) {
     
     // Server configuration.
     app.configure(function() {
@@ -27,7 +27,7 @@ module.exports = function(express, app, env, config) {
         else if (env === 'production') {
 
             // Enable gzip compression for public assets.
-            app.use(express.compress());
+            app.use(gzippo.staticGzip());
         }
 
         // General configuration.
@@ -39,4 +39,4 @@ module.exports = function(express, app, env, config) {
         // Enable ExpressJS router.
         app.use(app.router);
     });
-}
+};

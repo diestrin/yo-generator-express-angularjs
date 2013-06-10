@@ -22,4 +22,4 @@ module.exports = {
         // for example, Facebook API configuration for the different environments,
         // Twitter API, etc/
     }
-}
+};

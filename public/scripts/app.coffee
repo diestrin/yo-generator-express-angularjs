@@ -1,34 +1,48 @@
-# Declare application module.
-angular.module('myAwesomeApp', [ 'ngResource' ])
+# Awesome Application.
+# --------------------
+# Scaffolding sample for the Express-AngularJS generator for Yeoman.
+# 
+# Dependencies:
+# - Restangular (https://github.com/mgonto/restangular)
 
-    # API base URL.
-    .constant('apiUrl', '/models/')
+angular.module('myAwesomeApp', [ 'restangular' ])
 
     # Application configuration.
-    .config ($routeProvider) ->
+    .config (RestangularProvider, $routeProvider) ->
+
+        # API base URL.
+        RestangularProvider.setBaseUrl '/models/'
 
         # Application routes.
         $routeProvider
 
-        .when '/guide',
-            controller  : 'GuideCtrl as guide'
-            templateUrl : 'templates/views/guide/GuideView.html'
+        .when '/guides',
+            controller  : 'GuidesController as guides'
+            templateUrl : 'templates/guides/GuidesView.html'
             resolve     :
-                listData : [
+                guides : [
                     '$q'
-                    'Guide'
-                    '$rootScope'
-                    ($q, Guide, $rootScope) ->
+                    'Guides'
+                    ($q, Guides) ->
                         defer = $q.defer()
 
-                        # Show application loading message.
-                        $rootScope.loading = true
-
-                        Guide.query (data) ->
-                            defer.resolve(data)
+                        # Get all guide documents.
+                        Guides.getList().then (guides) ->
+                            defer.resolve(guides)
 
                         defer.promise
                 ]
 
         .otherwise
-            redirectTo : '/guide'
+            redirectTo : '/guides'
+
+    # Application runtime configuration and events.
+    .run ($rootScope) ->
+
+        # Show loading message on route change start.
+        $rootScope.$on '$routeChangeStart', (event, next, current) ->
+            $rootScope.loading = true
+
+        # Hide loading message on route change success.
+        $rootScope.$on '$routeChangeSuccess', (event, next, current) ->
+            $rootScope.loading = false

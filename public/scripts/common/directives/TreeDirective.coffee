@@ -1,3 +1,8 @@
+# Tree directive for AngularJS.
+# -----------------------------
+# Generates an expandible tree for a given object with some pre-defined
+# values.
+
 angular.module('myAwesomeApp').directive 'tree', ->
     restrict :  'E'
     template : '<ol><tree-option ng-repeat="item in data"></tree-option></ol>'
@@ -7,12 +12,12 @@ angular.module('myAwesomeApp').directive 'tree', ->
 
 angular.module('myAwesomeApp').directive 'treeOption', ($compile) ->
     restrict : 'E'
-    template : '<li><h4><a href="javascript:void(0);" ng-click="toggleVisibility(doc)">{{ item.title }}</a></h4></li>'
+    template : '<li><h4><a href="javascript:void(0);" ng-click="toggleVisibility()">{{ item.title }}</a></h4></li>'
 
     link  : (scope, element, attrs) ->
 
-        # Toggle visibility an item content.
-        scope.toggleVisibility = (obj) ->
+        # Toggle visibility of the item content.
+        scope.toggleVisibility = ->
             scope.isVisible = !scope.isVisible
 
         # Append text if the content is plain text.
