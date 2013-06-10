@@ -11,7 +11,7 @@ angular.module('myAwesomeApp', [ 'restangular' ])
     .config (RestangularProvider, $routeProvider) ->
 
         # API base URL.
-        RestangularProvider.setBaseUrl '/models/'
+        RestangularProvider.setBaseUrl '/models'
 
         # Application routes.
         $routeProvider
@@ -20,18 +20,7 @@ angular.module('myAwesomeApp', [ 'restangular' ])
             controller  : 'GuidesController as guides'
             templateUrl : 'templates/guides/GuidesView.html'
             resolve     :
-                guides : [
-                    '$q'
-                    'Guides'
-                    ($q, Guides) ->
-                        defer = $q.defer()
-
-                        # Get all guide documents.
-                        Guides.getList().then (guides) ->
-                            defer.resolve(guides)
-
-                        defer.promise
-                ]
+                guides : GuidesController.resolve
 
         .otherwise
             redirectTo : '/guides'

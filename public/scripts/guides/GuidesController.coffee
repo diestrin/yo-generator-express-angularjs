@@ -1,4 +1,6 @@
-angular.module('myAwesomeApp').controller 'GuidesController', (guides, $scope) ->
+# Guides controller.
+# ------------------
+window.GuidesController = angular.module('myAwesomeApp').controller 'GuidesController', (guides, $scope) ->
 
     # View title.
     @title = 'Generator documentation.'
@@ -8,3 +10,18 @@ angular.module('myAwesomeApp').controller 'GuidesController', (guides, $scope) -
 
     # Return controller data.
     return @
+
+
+# Resolver for Guides controller.
+# -------------------------------
+GuidesController.resolve = ($q, Guides) ->
+    defer = $q.defer()
+
+    # Get all guide documents.
+    Guides.getList().then (guides) ->
+        defer.resolve(guides)
+
+    defer.promise
+
+# Inject services to resolver.
+GuidesController.resolve.$inject = [ '$q', 'Guides' ]
