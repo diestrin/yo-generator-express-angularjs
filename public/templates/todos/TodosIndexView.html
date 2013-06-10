@@ -1,0 +1,11 @@
+<div class="clearfix">
+    <h2 class="pull-left">{{ todos.title }}</h2>
+    <a href="/#/todos/new" class="btn btn-success pull-right">Add Todo</a>
+</div>
+<hr />
+
+<ul>
+    <li ng-repeat="todo in todos.list">
+        <a href="/#/todos/{{ todo._id }}">{{ todo.name }}</a>
+    </li>
+</ul>

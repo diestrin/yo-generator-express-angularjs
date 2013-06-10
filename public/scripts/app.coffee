@@ -13,17 +13,34 @@ angular.module('myAwesomeApp', [ 'restangular' ])
         # API base URL.
         RestangularProvider.setBaseUrl '/api'
 
+        # Models default Primary Key.
+        RestangularProvider.setRestangularFields
+            id : '_id'
+
         # Application routes.
         $routeProvider
 
-        .when '/guides',
-            controller  : 'GuidesController as guides'
-            templateUrl : 'templates/guides/GuidesView.html'
+        # List all todos.
+        .when '/todos',
+            controller  : 'TodosIndexController as todos'
+            templateUrl : 'templates/todos/TodosIndexView.html'
             resolve     :
-                guides : GuidesController.resolve
+                todos : TodosIndexControllerResolve
+
+        # Create new todo.
+        .when '/todos/new',
+            controller  : 'TodosNewController as todo'
+            templateUrl : 'templates/todos/TodosNewView.html'
+        
+        # View a todo.
+        .when '/todos/:id',
+            controller  : 'TodosDetailController as todo'
+            templateUrl : 'templates/todos/TodosDetailView.html'
+            resolve     :
+                todo : TodosDetailControllerResolve
 
         .otherwise
-            redirectTo : '/guides'
+            redirectTo : '/todos'
 
     # Application runtime configuration and events.
     .run ($rootScope) ->

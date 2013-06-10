@@ -91,6 +91,7 @@ printHeader "\n${actual_step}- Checking commands\n-----------------------\n"
 
 checkCommand "heroku" "Heroku is not installed, please download the Heroku Toolbelt (https://toolbelt.heroku.com/) in order to configure Heroku."
 checkCommand "npm" "NPM is not installed, please go to (http://joyent.com/blog/installing-node-and-npm) and follow the instructions to install node and NPM."
+checkCommand "mongo" "MongoDB is not installed, please go to (http://docs.mongodb.org/manual/installation/) and follow the instructions to install it."
 checkCommand "gem" "Bundle is not installed, please make sure that Ruby is configured on your system and run this file again."
 checkCommand "coffee" "CoffeeScript is not installed, go to (http://coffeescript.org/) and follow the instructions to install."
 checkCommand "compass" "Compass is not installed, run \`sudo gem install compass\` to install it."

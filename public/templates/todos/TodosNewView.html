@@ -1,0 +1,27 @@
+<div class="clearfix">
+    <h2 class="pull-left">{{ todo.title }}</h2>
+    <a href="/#/todos" class="pull-right btn">Back to index</a>
+</div>
+<hr />
+
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="todo.data.name">Name</label>
+        <div class="controls">
+            <input type="text" id="todo.data.name" ng-model="todo.data.name" placeholder="Name" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="todo.data.description">Description</label>
+        <div class="controls">
+            <textarea id="todo.data.description" ng-model="todo.data.description" placeholder="Description"></textarea>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <button class="btn" ng-click="todo.create()">Create Todo</button>
+        </div>
+    </div>
+</form>
