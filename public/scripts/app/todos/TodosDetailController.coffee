@@ -19,7 +19,6 @@ angular.module('myAwesomeApp').controller 'TodosDetailController', (todo, Todos,
         
         if confirm 'Are you sure you want to delete this Todo?'
             Todos.remove @data._id, (response) ->
-                console.log response
                 $location.path '/'
 
     # Return controller data.
