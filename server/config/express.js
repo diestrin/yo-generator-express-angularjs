@@ -2,9 +2,7 @@
 
 // Module dependencies.
 // --------------------
-var express = require('express'),
-    gzippo  = require('gzippo');
-
+var express = require('express');
 
 // Export module.
 // --------------
@@ -27,7 +25,7 @@ module.exports = function(app, env, config) {
         else if (env === 'production') {
 
             // Enable gzip compression for public assets.
-            app.use(gzippo.staticGzip());
+            app.use(express.compress());
         }
 
         // General configuration.
