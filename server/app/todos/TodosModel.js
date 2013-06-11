@@ -11,9 +11,15 @@ var TodosSchema = new mongoose.Schema({
     updated_at  : Date
 });
 
-// Save current date on model creation or update.
+// Save current date on model creation.
 TodosSchema.pre('save', function (next, done) {
     this.created_at = new Date().toISOString();
+    next();
+});
+
+// Save current date on model update.
+TodosSchema.pre('update', function (next, done) {
+    this.updated_at = new Date().toISOString();
     next();
 });
 

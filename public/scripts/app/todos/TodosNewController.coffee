@@ -2,9 +2,6 @@
 # ------------------
 angular.module('myAwesomeApp').controller 'TodosNewController', (Todos, $location) ->
 
-    # View title.
-    @title = 'Create new Todo'
-
     # Save new Todo.
     @create = =>
         Todos.create @data, (response) ->
@@ -12,3 +9,4 @@ angular.module('myAwesomeApp').controller 'TodosNewController', (Todos, $locatio
 
     # Return controller data.
     return @
+    

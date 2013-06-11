@@ -2,9 +2,6 @@
 # ------------------
 angular.module('myAwesomeApp').controller 'TodosIndexController', (todos) ->
 
-    # View title.
-    @title = 'Todo list.'
-
     # Todos list.
     @list = todos
 
@@ -17,7 +14,7 @@ angular.module('myAwesomeApp').controller 'TodosIndexController', (todos) ->
 window.TodosIndexControllerResolve = ($q, Todos) ->
     defer = $q.defer()
 
-    # Get all todo items.
+    # Get all Todos.
     Todos.all (todos) ->
         defer.resolve(todos)
 

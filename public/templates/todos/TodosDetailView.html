@@ -4,7 +4,7 @@
         <h2 class="pull-left">{{ todo.data.name }}</h2>
 
         <div class="pull-right" ng-hide="todo.editing">
-            <button class="btn btn-primary" ng-click="todo.toggleEdit()">Edit Todo</button>
+            <a href="/#/todos/{{ todo.data._id }}/edit" class="btn btn-primary">Edit Todo</a>
             <button class="btn btn-danger" ng-click="todo.remove()">Delete Todo</button>
             <a href="/#/todos" class="btn">Back to index</a>
         </div>
@@ -12,35 +12,4 @@
     <hr />
 
     <p ng-hide="todo.editing">{{ todo.data.description }}</p>
-</div>
-
-<!-- Edit Todo -->
-<div ng-show="todo.editing">
-    <div class="clearfix">
-        <h2 class="pull-left">Edit Todo</h2>
-        <button class="btn btn-danger pull-right" ng-click="todo.toggleEdit()">Cancel Edition</button>
-    </div>
-    <hr />
-
-    <form class="form-horizontal">
-        <div class="control-group">
-            <label class="control-label" for="todo.data.name">Name</label>
-            <div class="controls">
-                <input type="text" id="todo.data.name" ng-model="todo.data.name" placeholder="Name" />
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="todo.data.description">Description</label>
-            <div class="controls">
-                <textarea id="todo.data.description" ng-model="todo.data.description" placeholder="Description"></textarea>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <div class="controls">
-                <button class="btn" ng-click="todo.update()">Save Todo</button>
-            </div>
-        </div>
-    </form>
 </div>

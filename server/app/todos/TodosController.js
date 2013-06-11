@@ -70,6 +70,9 @@ exports.update = function (req, res) {
             // Remove id from payload to avoid Mongoose problems.
             delete req.body._id;
 
+            // Set updated_at date when the model is updated.
+            req.body.updated_at = new Date().toISOString();
+
             todo.update(req.body, function (err, todo) {
 
                 if (err) {

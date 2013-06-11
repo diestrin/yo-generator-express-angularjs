@@ -38,6 +38,13 @@ angular.module('myAwesomeApp', [ 'restangular' ])
             templateUrl : 'templates/todos/TodosDetailView.html'
             resolve     :
                 todo : TodosDetailControllerResolve
+        
+        # Edit a todo.
+        .when '/todos/:id/edit',
+            controller  : 'TodosEditController as todo'
+            templateUrl : 'templates/todos/TodosEditView.html'
+            resolve     :
+                todo : TodosEditControllerResolve
 
         .otherwise
             redirectTo : '/todos'

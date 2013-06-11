@@ -17,8 +17,3 @@ angular.module('myAwesomeApp').factory 'Todos', (Restangular) ->
     one : (id, callback) ->
         Restangular.one('todos', id).get().then (todo) ->
             callback todo
-
-    # Delete a Todo.
-    remove : (id, callback) ->
-        Restangular.one('todos', id).remove().then (response) ->
-            callback response

@@ -1,24 +1,14 @@
 # Todos Detail controller.
 # ------------------
-angular.module('myAwesomeApp').controller 'TodosDetailController', (todo, Todos, $location) ->
+angular.module('myAwesomeApp').controller 'TodosDetailController', (todo, $location) ->
 
-    # Todos list.
+    # Todo.
     @data = todo
-
-    # Toggle edit form.
-    @toggleEdit = =>
-        @editing = !@editing
-
-    # Edit Todo.
-    @update = =>
-        @data.put().then (response) =>
-            @toggleEdit()
 
     # Delete Todo.
     @remove = ->
-        
         if confirm 'Are you sure you want to delete this Todo?'
-            Todos.remove @data._id, (response) ->
+            @data.remove().then (response) ->
                 $location.path '/'
 
     # Return controller data.
@@ -31,7 +21,7 @@ window.TodosDetailControllerResolve = ($q, $route, Todos) ->
     defer = $q.defer()
     id    = $route.current.params.id
 
-    # Get all todo items.
+    # Get Todo.
     Todos.one id, (todo) ->
         defer.resolve(todo)
 
