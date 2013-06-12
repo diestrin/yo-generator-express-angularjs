@@ -1,9 +1,12 @@
 'use strict';
 
-// LiveReload utilities.
+// Module dependencies.
 var path = require('path');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+
+    // Load all Grunt tasks
+    require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Grunt configuration.
     // --------------------
@@ -26,8 +29,8 @@ module.exports = function(grunt) {
             bower   : 'lib',
             dev     : '<%= appConfig.app.dev %>',
             dist    : '<%= appConfig.app.dist %>',
-            scripts : '<%= appConfig.app.dev %>/<%= appConfig.scripts.src %>',
-            styles  : '<%= appConfig.app.dev %>/<%= appConfig.styles.src %>'
+            scripts : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>',
+            styles  : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.styles %>'
         },
 
         // Compile CoffeeScript.
@@ -36,8 +39,8 @@ module.exports = function(grunt) {
             // Compile Coffee for development environment.
             dev: {
                 expand : true,
-                cwd    : '<%= appConfig.app.src %>/<%= appConfig.scripts.src %>',
-                dest   : '<%= appConfig.app.dev %>/<%= appConfig.scripts.src %>',
+                cwd    : '<%= appConfig.app.src %>/<%= appConfig.app.assets.scripts %>',
+                dest   : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>',
                 src    : '**/*.coffee',
                 ext    : '.js'
             }
@@ -49,9 +52,13 @@ module.exports = function(grunt) {
             // Compile Compass for development environment.
             dev: {
                 options: {
-                    basePath : '.',
-                    cssDir   : '<%= appConfig.app.dev %>/<%= appConfig.styles.src %>',
-                    sassDir  : '<%= appConfig.app.src %>/<%= appConfig.styles.src %>'
+                    cssDir         : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.styles %>',
+                    fontsDir       : '<%= appConfig.app.src %>/<%= appConfig.app.assets.fonts %>',
+                    imagesDir      : '<%= appConfig.app.src %>/<%= appConfig.app.assets.images %>',
+                    importPath     : '<%= appConfig.app.src %>/<%= appConfig.app.assets.lib %>',
+                    javascriptsDir : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>',
+                    relativeAssets : true,
+                    sassDir        : '<%= appConfig.app.src %>/<%= appConfig.app.assets.styles %>'
                 }
             }
         },
@@ -79,9 +86,9 @@ module.exports = function(grunt) {
                         src    : [
                             '**',
                             '!**/lib/**',
-                            '!**/<%= appConfig.app.templatesSrc %>/**',
-                            '!**/<%= appConfig.scripts.src %>/**',
-                            '!**/<%= appConfig.styles.src %>/**'
+                            '!**/<%= appConfig.app.assets.templates %>/**',
+                            '!**/<%= appConfig.app.assets.scripts %>/**',
+                            '!**/<%= appConfig.app.assets.styles %>/**'
                         ]
                     }
                 ]
@@ -100,8 +107,8 @@ module.exports = function(grunt) {
                     ],
                     debug   : true,
                     monitor : {},
-                    port    : '<%= appConfig.server.port %>',
-                    server  : path.resolve('./<%= appConfig.server.src %>')
+                    port    : 3000,
+                    server  : path.resolve('./<%= appConfig.app.server %>')
                 }
             },
 
@@ -111,8 +118,8 @@ module.exports = function(grunt) {
                     bases   : [
                         '<%= appConfig.app.dist %>'
                     ],
-                    port    : process.env.PORT || '<%= appConfig.server.port %>',
-                    server  : path.resolve('./<%= appConfig.server.src %>')
+                    port    : process.env.PORT || 3000,
+                    server  : path.resolve('./<%= appConfig.app.server %>')
                 }
             }
         },
@@ -145,10 +152,10 @@ module.exports = function(grunt) {
         // Generate anotations for angular injections.
         ngmin: {
             dist: {
-                cwd    : '<%= appConfig.app.dist %>/<%= appConfig.scripts.src %>',
+                cwd    : '<%= appConfig.app.dist %>/<%= appConfig.app.assets.scripts %>',
                 expand : true,
                 src    : [ '**/*.js' ],
-                dest   : '<%= appConfig.app.dist %>/<%= appConfig.scripts.src %>'
+                dest   : '<%= appConfig.app.dist %>/<%= appConfig.app.assets.scripts %>'
             }
         },
 
@@ -159,26 +166,26 @@ module.exports = function(grunt) {
                     base   : '<%= appConfig.app.dev %>',
                     module : '<%= appConfig.app.ngModule %>'
                 },
-                src  : '<%= appConfig.app.dev %>/<%= appConfig.app.templatesSrc %>/**/*.html',
-                dest : '<%= appConfig.app.dev %>/<%= appConfig.scripts.src %>/templates.js'
+                src  : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.templates %>/**/*.html',
+                dest : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>/templates.js'
             }
         },
 
         // Open a web server with a given URL.
         open: {
             server: {
-                path: 'http://localhost:<%= appConfig.server.port %>'
+                path: 'http://localhost:3000'
             }
         },
 
         // Watch for changes in files and call a given task.
         regarde: {
             coffee: {
-                files : '<%= appConfig.app.src %>/<%= appConfig.scripts.src %>/**/*.coffee',
+                files : '<%= appConfig.app.src %>/<%= appConfig.app.assets.scripts %>/**/*.coffee',
                 tasks : 'compile:coffee'
             },
             compass: {
-                files : '<%= appConfig.app.src %>/<%= appConfig.styles.src %>/**/*.{sass,scss}',
+                files : '<%= appConfig.app.src %>/<%= appConfig.app.assets.styles %>/**/*.{sass,scss}',
                 tasks : 'compile:compass'
             },
             livereload: {
@@ -200,57 +207,6 @@ module.exports = function(grunt) {
             }
         }
     });
-
-    // Load tasks.
-    // -----------
-
-    // https://github.com/ericclemmons/grunt-angular-templates
-    grunt.loadNpmTasks('grunt-angular-templates');
-
-    // https://github.com/yatskevich/grunt-bower-task
-    grunt.loadNpmTasks('grunt-bower-task');
-
-    // https://github.com/gruntjs/grunt-contrib-clean
-    grunt.loadNpmTasks('grunt-contrib-clean');
-
-    // https://github.com/gruntjs/grunt-contrib-coffee
-    grunt.loadNpmTasks('grunt-contrib-coffee');
-
-    // https://github.com/gruntjs/grunt-contrib-compass
-    grunt.loadNpmTasks('grunt-contrib-compass');
-
-    // https://github.com/gruntjs/grunt-contrib-concat
-    grunt.loadNpmTasks('grunt-contrib-concat');
-
-    // https://github.com/gruntjs/grunt-contrib-copy
-    grunt.loadNpmTasks('grunt-contrib-copy');
-
-    // https://github.com/gruntjs/grunt-contrib-cssmin
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-
-    // https://github.com/gruntjs/grunt-contrib-htmlmin
-    grunt.loadNpmTasks('grunt-contrib-htmlmin');
-
-    // https://github.com/gruntjs/grunt-contrib-livereload
-    grunt.loadNpmTasks('grunt-contrib-livereload');
-
-    // https://github.com/gruntjs/grunt-contrib-uglify
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-
-    // https://github.com/blai/grunt-express
-    grunt.loadNpmTasks('grunt-express');
-
-    // https://github.com/btford/grunt-ngmin
-    grunt.loadNpmTasks('grunt-ngmin');
-
-    // https://npmjs.org/package/grunt-open
-    grunt.loadNpmTasks('grunt-open');
-
-    // https://github.com/yeoman/grunt-regarde
-    grunt.loadNpmTasks('grunt-regarde');
-
-    // https://github.com/yeoman/grunt-usemin
-    grunt.loadNpmTasks('grunt-usemin');
 
     // Custom tasks.
     // -------------
@@ -305,4 +261,7 @@ module.exports = function(grunt) {
         'clean:bower',
         'build'
     ]);
+
+    // Alias build task as Grunt default task.
+    grunt.registerTask('default', [ 'build' ]);
 }

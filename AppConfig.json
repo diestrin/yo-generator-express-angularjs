@@ -1,31 +1,23 @@
 {
     "app": {
-        "dev"          : ".dev",
-        "dist"         : ".dist",
-        "ngModule"     : "myAwesomeApp",
-        "src"          : "public",
-        "templatesSrc" : "templates"
+        "ngModule" : "myAwesomeApp",
+
+        "dev"      : ".dev",
+        "dist"     : ".dist",
+        "server"   : "server",
+        "src"      : "public",
+
+        "assets"  : {
+            "fonts"     : "fonts",
+            "images"    : "images",
+            "lib"       : "lib",
+            "scripts"   : "scripts",
+            "styles"    : "styles",
+            "templates" : "templates"
+        }
     },
 
     "livereload": {
-        "files" : [ "{.dev,.dist,public}/**/*.html", "{.dev,.dist,public}/styles/{,*/}*.css", "{.dev,.dist,public}/scripts/{,*/}*.js" ],
-        "port"  : 1717
-    },
-
-    "scripts": {
-        "libraries" : [
-            "public/lib/angular-unstable/angular.min.js",
-            "public/lib/angular-resource/angular-resource.min.js"
-        ],
-        "src"       : "scripts"
-    },
-
-    "server": {
-        "port" : 3000,
-        "src"  : "server"
-    },
-
-    "styles": {
-        "src"   : "styles"
+        "files" : [ "{.dev,.dist,public}/**/*.html", "{.dev,.dist,public}/styles/{,*/}*.css", "{.dev,.dist,public}/scripts/{,*/}*.js" ]
     }
 }
