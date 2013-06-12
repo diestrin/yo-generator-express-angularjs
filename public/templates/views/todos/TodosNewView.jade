@@ -1,0 +1,20 @@
+div.clearfix
+    h2.pull-left New Todo
+    a.btn.pull-right(href='/#/todos') Back to index
+hr
+
+form.form-horizontal(name='newTodo')
+    div.control-group
+        label.control-label(for='name') Name*
+        div.controls
+            input#name(type='text', name='name', ng-model='todo.data.name', placeholder='name', required)
+            div.text-error.small(ng-show='newTodo.name.$error.required')
+                small Required field.
+    div.control-group
+        label.control-label(for='description') Description
+        div.controls
+            textarea#description(name='description', ng-model='todo.data.description', placeholder='Description')
+
+    div.control-group
+        div.controls
+            button.btn(ng-click='todo.create()', ng-disabled='!newTodo.$valid') Create Todo

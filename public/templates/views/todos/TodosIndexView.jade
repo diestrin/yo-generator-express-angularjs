@@ -1,0 +1,8 @@
+div.clearfix
+    h2.pull-left Todos list
+    a.btn.btn-success.pull-right(href='/#/todos/new') Add Todo
+hr
+
+ul
+    li(ng-repeat='todo in todos.list')
+        a(href='/#/todos/{{ todo._id }}') {{ todo.name }}

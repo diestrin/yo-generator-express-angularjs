@@ -1,0 +1,10 @@
+div.clearfix
+    h2.pull-left {{ todo.data.name }}
+
+    div.pull-right(ng-hide='todo.editing')
+        button.btn.btn-danger(ng-click='todo.remove()') Delete Todo
+        a.btn.btn-primary(href='/#/todos/{{ todo.data._id }}/edit') Edit Todo
+        a.btn(href='/#/todos') Back to index
+hr
+
+p {{ todo.data.description }}

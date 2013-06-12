@@ -1,7 +1,7 @@
 # Awesome Application.
 # --------------------
 # Scaffolding sample for the Express-AngularJS generator for Yeoman.
-# 
+#
 # Dependencies:
 # - Restangular (https://github.com/mgonto/restangular)
 
@@ -23,26 +23,26 @@ angular.module('myAwesomeApp', [ 'restangular' ])
         # List all todos.
         .when '/todos',
             controller  : 'TodosIndexController as todos'
-            templateUrl : 'templates/todos/TodosIndexView.html'
+            templateUrl : 'templates/views/todos/TodosIndexView.html'
             resolve     :
                 todos : TodosIndexControllerResolve
 
         # Create new todo.
         .when '/todos/new',
             controller  : 'TodosNewController as todo'
-            templateUrl : 'templates/todos/TodosNewView.html'
-        
+            templateUrl : 'templates/views/todos/TodosNewView.html'
+
         # View a todo.
         .when '/todos/:id',
             controller  : 'TodosDetailController as todo'
-            templateUrl : 'templates/todos/TodosDetailView.html'
+            templateUrl : 'templates/views/todos/TodosDetailView.html'
             resolve     :
                 todo : TodosDetailControllerResolve
-        
+
         # Edit a todo.
         .when '/todos/:id/edit',
             controller  : 'TodosEditController as todo'
-            templateUrl : 'templates/todos/TodosEditView.html'
+            templateUrl : 'templates/views/todos/TodosEditView.html'
             resolve     :
                 todo : TodosEditControllerResolve
 

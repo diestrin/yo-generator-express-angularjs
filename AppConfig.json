@@ -17,7 +17,8 @@
         }
     },
 
-    "livereload": {
-        "files" : [ "{.dev,.dist,public}/**/*.html", "{.dev,.dist,public}/styles/{,*/}*.css", "{.dev,.dist,public}/scripts/{,*/}*.js" ]
+    "engines": {
+        "coffeescript" : true,
+        "jade"         : true
     }
 }

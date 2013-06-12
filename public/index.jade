@@ -1,0 +1,37 @@
+doctype 5
+html(lang="en", ng-app="myAwesomeApp")
+
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title Advanced AngularJS project generator.
+
+        // build:css styles/screen.min.css
+        link(rel='stylesheet', href='styles/screen.css')
+        // endbuild
+
+    body
+        div.container
+            div.hero-unit
+                h2(ng-show='loading') Loading...
+                ng-view
+
+            // build:js scripts/app.min.js
+            script(src="lib/showdown/src/showdown.js")
+            script(src="lib/lodash/dist/lodash.min.js")
+            script(src="lib/angular-unstable/angular.min.js")
+            script(src="lib/angular-resource/angular-resource.min.js")
+            script(src="lib/restangular/dist/restangular.min.js")
+            script(src="scripts/app.js")
+
+            //- Please don't erase this line, this file will contain the inlined templates on the build.
+            script(src="scripts/templates.js")
+
+            script(src="scripts/global/directives/TreeDirective.js")
+            script(src="scripts/global/directives/MarkdownDirective.js")
+            script(src="scripts/app/todos/TodosService.js")
+            script(src="scripts/app/todos/TodosIndexController.js")
+            script(src="scripts/app/todos/TodosNewController.js")
+            script(src="scripts/app/todos/TodosDetailController.js")
+            script(src="scripts/app/todos/TodosEditController.js")
+            // endbuild
