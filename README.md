@@ -1,6 +1,7 @@
 # TODO
 
 ## While completing the scaffolding.
+- Add `grunt-contrib-imagemin`.
 - Add some methods for when getting collections such as limit (for pagination), standarize more the result messages based on RESTful best practices and [http status codes](http://www.restapitutorial.com/httpstatuscodes.html).
 - Add preview for edit and save mode, also enable markdown for when the field is long.
 - Add a service for flash notifications?.
@@ -10,6 +11,7 @@
 
 ### Grunt tasks.
 - Add a task for when the user pulls the repo, this will update installed npm and bower packages.
+- Add a task for deploy, which will build and then commit to a `production` branch, use `git subtree` on it.
 
 ## Once the scaffold is complete.
 - Create Yeoman generator.
