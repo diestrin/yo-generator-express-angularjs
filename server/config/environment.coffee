@@ -1,3 +1,7 @@
+# Module dependencies.
+# --------------------
+AppConfig = require '../../AppConfig.json'
+
 # Environment configuration.
 # --------------------------
 # When loading this module, it will return the requested
@@ -7,7 +11,8 @@ module.exports =
 
     # Development environment.
     development:
-        db : 'mongodb://localhost/myawesomeapp'
+        db     : 'mongodb://localhost/myawesomeapp'
+        public : __dirname + '/../../' + AppConfig.app.src + '/'
 
         # You can place here as many configuration objects as you want,
         # for example, Facebook API configuration for the different environments,
@@ -15,7 +20,8 @@ module.exports =
 
     # Production environment.
     production:
-        db : ''
+        db     : ''
+        public : __dirname + '/../../' + AppConfig.app.dist + '/'
 
         # You can place here as many configuration objects as you want,
         # for example, Facebook API configuration for the different environments,

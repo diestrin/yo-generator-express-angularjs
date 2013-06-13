@@ -2,7 +2,7 @@
 
 # Module dependencies.
 # --------------------
-express = require 'express'
+express   = require 'express'
 
 # Export module.
 # --------------
@@ -29,7 +29,7 @@ module.exports = (app, env, config) ->
 
         # General configuration.
         # ----------------------
-        app.use express.favicon()
+        app.use express.favicon config.public + 'favicon.ico'
         app.use express.bodyParser()
         app.use express.methodOverride()
 
