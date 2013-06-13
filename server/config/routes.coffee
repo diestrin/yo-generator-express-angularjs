@@ -4,5 +4,5 @@ module.exports = (app) ->
     # API routes.
     app.namespace '/api', ->
 
-        # Guides resource.
-        app.resource 'todos', require '../app/todos/TodosController'
+        # Notes resource.
+        app.resource 'notes', require '../app/notes/NotesController'

@@ -20,34 +20,34 @@ angular.module('myAwesomeApp', [ 'restangular' ])
         # Application routes.
         $routeProvider
 
-        # List all todos.
-        .when '/todos',
-            controller  : 'TodosIndexController as todos'
-            templateUrl : 'templates/views/todos/TodosIndexView.html'
+        # List all notes.
+        .when '/notes',
+            controller  : 'NotesIndexController as notes'
+            templateUrl : 'templates/views/notes/NotesIndexView.html'
             resolve     :
-                todos : TodosIndexControllerResolve
+                notes : NotesIndexControllerResolve
 
-        # Create new todo.
-        .when '/todos/new',
-            controller  : 'TodosNewController as todo'
-            templateUrl : 'templates/views/todos/TodosNewView.html'
+        # Create new note.
+        .when '/notes/new',
+            controller  : 'NotesNewController as note'
+            templateUrl : 'templates/views/notes/NotesNewView.html'
 
-        # View a todo.
-        .when '/todos/:id',
-            controller  : 'TodosDetailController as todo'
-            templateUrl : 'templates/views/todos/TodosDetailView.html'
+        # View a note.
+        .when '/notes/:id',
+            controller  : 'NotesDetailController as note'
+            templateUrl : 'templates/views/notes/NotesDetailView.html'
             resolve     :
-                todo : TodosDetailControllerResolve
+                note : NotesDetailControllerResolve
 
-        # Edit a todo.
-        .when '/todos/:id/edit',
-            controller  : 'TodosEditController as todo'
-            templateUrl : 'templates/views/todos/TodosEditView.html'
+        # Edit a note.
+        .when '/notes/:id/edit',
+            controller  : 'NotesEditController as note'
+            templateUrl : 'templates/views/notes/NotesEditView.html'
             resolve     :
-                todo : TodosEditControllerResolve
+                note : NotesEditControllerResolve
 
         .otherwise
-            redirectTo : '/todos'
+            redirectTo : '/notes'
 
     # Application runtime configuration and events.
     .run ($rootScope) ->

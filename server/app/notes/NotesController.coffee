@@ -1,62 +1,62 @@
 # Module dependencies.
 # --------------------
 mongoose = require 'mongoose'
-Todos    = mongoose.model 'Todos'
+Notes    = mongoose.model 'Notes'
 
 # Private methods.
 # ----------------
 
 # Return a single instance of the model.
 findById = (id, callback) ->
-    Todos.findById id, (err, todo) ->
+    Notes.findById id, (err, note) ->
 
-        if err or not todo
+        if err or not note
             res.status 404
             res.json
-                message : 'Requested Todo didn\'t exist.'
+                message : 'Requested Note didn\'t exist.'
         else
-            callback todo
+            callback note
 
 # Public methods.
 # -----------------
 
-# Return Todos list.
+# Return Notes list.
 exports.index = (req, res) ->
-    Todos.find (err, todos) ->
+    Notes.find (err, notes) ->
 
         if  err
             res.status 500
             res.json err
         else
-            res.json todos
+            res.json notes
 
-# Insert new Todo.
+# Insert new Note.
 exports.create = (req, res) ->
-    Todo = new Todos req.body
-    Todo.save (err, todo) ->
+    Note = new Notes req.body
+    Note.save (err, note) ->
 
         if err
             res.status 400
             res.json err
         else
             res.json
-                message : 'Todo created successfully.', data : todo
+                message : 'Note created successfully.', data : note
 
-# Get a Todo.
+# Get a Note.
 exports.show = (req, res) ->
-    findById req.params.todo, (todo) ->
-        res.json todo
+    findById req.params.note, (note) ->
+        res.json note
 
-# Edit Todo.
+# Edit Note.
 exports.update = (req, res) ->
-    findById req.params.todo, (todo) ->
+    findById req.params.note, (note) ->
 
         # Remove id from payload to avoid Mongoose problems.
         delete req.body._id
 
         # Set updated_at date when the model is updated.
         req.body.updated_at = new Date().toISOString()
-        todo.update req.body, (err, todo) ->
+        note.update req.body, (err, note) ->
 
             if err
                 res.status 400
@@ -64,16 +64,16 @@ exports.update = (req, res) ->
                     message : err
             else
                 res.json
-                    message : 'Todo updated successfully.'
+                    message : 'Note updated successfully.'
 
-# Remove Todo.
+# Remove Note.
 exports.destroy = (req, res) ->
-    findById req.params.todo, (todo) ->
-        todo.remove (err, todo) ->
+    findById req.params.note, (note) ->
+        note.remove (err, note) ->
 
             if err
                 res.status 404
                 res.json err
             else
                 res.json
-                    message : 'Todo destroyed successfully.'
+                    message : 'Note destroyed successfully.'

@@ -1,0 +1,8 @@
+div.clearfix
+    h2.pull-left Notes list
+    a.btn.btn-success.pull-right(href='/#/notes/new') Add Note
+hr
+
+ul
+    li(ng-repeat='note in notes.list')
+        a(href='/#/notes/{{ note._id }}') {{ note.name }}

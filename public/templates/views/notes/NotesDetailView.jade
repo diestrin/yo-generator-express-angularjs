@@ -1,0 +1,13 @@
+div.clearfix
+    h2.pull-left {{ note.data.name }}
+
+    div.pull-right(ng-hide='note.editing')
+        | 
+        button.btn.btn-danger(ng-click='note.remove()') Delete Note
+        | 
+        a.btn.btn-primary(href='/#/notes/{{ note.data._id }}/edit') Edit Note
+        | 
+        a.btn(href='/#/notes') Back to index
+hr
+
+p {{ note.data.description }}

@@ -1,0 +1,20 @@
+div.clearfix
+    h2.pull-left Edit Note
+    a.btn.pull-right(href='/#/notes/{{ note.data._id }}') Back to Note
+hr
+
+form.form-horizontal(name='editNote')
+    div.control-group
+        label.control-label(for='name') Name*
+        div.controls
+            input#name(type='text', name='name', ng-model='note.data.name', placeholder='name', required)
+            div.text-error.small(ng-show='editNote.name.$error.required')
+                small Required field.
+    div.control-group
+        label.control-label(for='description') Description
+        div.controls
+            textarea#description(name='description', ng-model='note.data.description', placeholder='Description')
+
+    div.control-group
+        div.controls
+            button.btn(ng-click='note.update()', ng-disabled='!editNote.$valid') Save Note
