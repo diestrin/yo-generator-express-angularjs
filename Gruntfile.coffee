@@ -193,7 +193,7 @@ module.exports = (grunt) ->
     grunt.registerTask 'compile', (task) ->
 
         if task is undefined
-            console.log 'Running all compilers.'
+            grunt.log.ok 'Running all compilers.'
             return grunt.task.run [
                 'compile:coffee'
                 'compile:compass'
