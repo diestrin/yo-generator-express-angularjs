@@ -211,21 +211,33 @@ module.exports = (grunt) ->
         ]
 
     # Compress, concatenate, generate documentation and run unit tests.
-    grunt.registerTask 'build', [
-        'clean:dist'
-        'compile'
-        'copy:dist'
-        'copy:dev'
-        'ngtemplates'
-        'useminPrepare'
-        'concat'
-        'cssmin'
-        'ngmin'
-        'uglify'
-        'usemin'
-        'htmlmin'
-        'clean:dev'
-    ]
+    grunt.registerTask 'build', ->
+
+        # Run all builder tasks.
+        grunt.task.run [
+            'clean:dist'
+            'compile'
+            'copy:dist'
+            'copy:dev'
+            'ngtemplates'
+            'useminPrepare'
+            'concat'
+            'cssmin'
+            'ngmin'
+            'uglify'
+            'usemin'
+            'htmlmin'
+            'clean:dev'
+        ]
+
+        # Passing the flag --preview, after the build a server will be started to
+        # preview your build.
+        if grunt.option 'preview'
+            grunt.task.run [
+                'express:dist'
+                'open'
+                'express-keepalive'
+            ]
 
     # Start local server and watch for changes in files.
     grunt.registerTask 'dev', [
@@ -233,12 +245,6 @@ module.exports = (grunt) ->
         'express:dev'
         'open'
         'watch'
-    ]
-
-    # Create build and then open it for preview.
-    grunt.registerTask 'dist', [
-        'express:dist'
-        'express-keepalive'
     ]
 
     # Compile assets for production on Heroku side.
