@@ -1,17 +1,13 @@
 # TODO
+## Grunt tasks.
+1. Add `grunt-contrib-imagemin`.
+2. Add `grunt-rev`
+3. Add `grunt-coffeelint` and `grunt-contrib-jshint`.
+4. Add Jasmine to run unit, middleware and e2e tests with Karma test runner.
+5. Add a task for when the user pulls the repo, update installed npm and bower packages.
 
-## While completing the scaffolding.
-- Add `grunt-contrib-imagemin`.
-- Add some methods for when getting collections such as limit (for pagination), standarize more the result messages based on RESTful best practices and [http status codes](http://www.restapitutorial.com/httpstatuscodes.html).
-- Add preview for edit and save mode, also enable markdown for when the field is long.
-- Add a service for flash notifications?.
-- Add a directive for form elements?.
-- Add CoffeeLint and JSlint.
-- Add Jasmine to run unit, middleware and e2e tests with Karma test runner.
+## ExpressJS Features.
+1. Add some methods for when getting collections such as limit (for pagination) and create a common module to _don't repeat yourself_ when creating the methods on server side controllers with the standarized [http status codes](http://www.restapitutorial.com/httpstatuscodes.html).
 
-### Grunt tasks.
-- Add a task for when the user pulls the repo, this will update installed npm and bower packages.
-- Add a task for deploy, which will build and then commit to a `production` branch, use `git subtree` on it.
-
-## Once the scaffold is complete.
-- Create Yeoman generator.
+# Generator tasks.
+_TBD_
