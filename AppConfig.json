@@ -2,12 +2,12 @@
     "app": {
         "ngModule" : "myAwesomeApp",
 
-        "dev"      : ".dev",
-        "dist"     : ".dist",
-        "server"   : "server",
-        "src"      : "public",
+        "dev"    : "_dev",
+        "dist"   : "_dist",
+        "server" : "server",
+        "src"    : "public",
 
-        "assets"  : {
+        "assets": {
             "fonts"     : "fonts",
             "images"    : "images",
             "lib"       : "lib",
@@ -19,6 +19,7 @@
 
     "engines": {
         "coffeescript" : true,
-        "jade"         : true
+        "compass"      : true,
+        "jade"         : true,
     }
 }
