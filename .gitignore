@@ -3,3 +3,4 @@ _dist
 .sass-cache
 public/lib/
 node_modules/
+*.log
