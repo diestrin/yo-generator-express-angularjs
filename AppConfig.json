@@ -20,6 +20,6 @@
     "engines": {
         "coffeescript" : true,
         "compass"      : true,
-        "jade"         : true,
+        "jade"         : true
     }
 }
